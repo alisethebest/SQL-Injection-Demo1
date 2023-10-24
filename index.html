@@ -1,0 +1,53 @@
+<meta charset="UTF-8">
+<title>My Project</title>
+<!-- Link to the stylesheet -->
+<link rel="stylesheet" href="style.css">
+<!-- Link to the javascript -->
+<script src="app.js"></script>
+</head>
+
+<body>
+    <!-- Create the form -->
+    <form action="/login" method="post">
+        <!-- Wrap fields and button in a container -->
+        <div class="container">
+            <!-- Required text input for username -->
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <!-- Required text input for password -->
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <!-- Submit button -->
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+    <!-- Script to display unauthorized or error messages -->
+    <script>
+        if (document.location.hash === '#unauthorized') {
+            document.write('<div class="unauthorized">Invalid Username or Password</div>');
+        } else if (document.location.hash === '#error') {
+            document.write('<div class="error">An error has occurred</div>');
+        }
+    </script>
+
+    <!-- Script to handle invalid logins -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+            form.addEventListener("submit", function (event) {
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+
+                if (!username || !password) {
+                    alert("Invalid login credentials.");
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
